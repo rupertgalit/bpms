@@ -56,6 +56,7 @@ if(isset($_POST['submit']))
     $name=$_POST['name'];
     $email=$_POST['email'];
     $services=$_POST['services'];
+    $staff=$_POST['staff'];
     $adate=$_POST['adate'];
     $atime=$_POST['atime'];
     $phone=$_POST['phone'];
@@ -63,7 +64,7 @@ if(isset($_POST['submit']))
 
 
 
-	$blkd=mysqli_query($con,"SELECT * FROM tblappointment WHERE AptDate = '$adate' AND AptTime = '$atime'");
+	$blkd=mysqli_query($con,"SELECT * FROM tblappointment WHERE AptDate = '$adate' AND AptTime = '$atime' AND Staff = '$staff'");
 
 	if(mysqli_num_rows($blkd)) {
 		
@@ -77,7 +78,7 @@ if(isset($_POST['submit']))
 		}
 		else{
 	 
-				$query=mysqli_query($con,"insert into tblappointment(AptNumber,Name,Email,PhoneNumber,AptDate,AptTime,Services) value('$aptnumber','$name','$email','$phone','$adate','$atime','$services')");
+				$query=mysqli_query($con,"insert into tblappointment(AptNumber,Name,Email,PhoneNumber,AptDate,AptTime,Services,Staff) value('$aptnumber','$name','$email','$phone','$adate','$atime','$services','$staff')");
 				if ($query) {
 					$ret=mysqli_query($con,"select AptNumber from tblappointment where Email='$email' and  PhoneNumber='$phone'");
 					$result=mysqli_fetch_array($ret);
@@ -138,8 +139,6 @@ if(isset($_POST['submit']))
                                 <p class="mb-4">This parlour provides huge facilities with advanced technology
                                     equipments and best quality service. Here we offer best treatment that you might
                                     have never experienced before.</p>
-
-
                             </div>
                         </div>
                     </div>
@@ -173,6 +172,7 @@ if(isset($_POST['submit']))
                                                 placeholder="Email" name="email" required="true">
                                         </div>
                                     </div>
+
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <div class="select-wrap">
@@ -181,9 +181,9 @@ if(isset($_POST['submit']))
                                                     class="form-control">
                                                     <option value="">Select Services</option>
                                                     <?php $query=mysqli_query($con,"select * from tblservices");
-              while($row=mysqli_fetch_array($query))
-              {
-              ?>
+                                                    while($row=mysqli_fetch_array($query))
+                                                    {
+                                                    ?>
                                                     <option value="<?php echo $row['ServiceName'];?>">
                                                         <?php echo $row['ServiceName'];?></option>
                                                     <?php } ?>
@@ -191,6 +191,27 @@ if(isset($_POST['submit']))
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <div class="select-wrap">
+                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                                <select name="staff" id="staff" required="true"
+                                                    class="form-control">
+                                                    <option value="">Select Staff</option>
+                                                    <?php $query=mysqli_query($con,"select * from tblstaff");
+                                                    while($row=mysqli_fetch_array($query))
+                                                    {
+                                                    ?>
+                                                    <option value="<?php echo $row['Staff_Name'];?>">
+                                                        <?php echo $row['Staff_Name'];?>-<?php echo $row['Name'];?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control appointment_date" placeholder="Date"
@@ -241,7 +262,7 @@ if(isset($_POST['submit']))
                     </button>
                 </div>
                 <div class="modal-body">
-                    Try Different Date or Time for Appointment Schedule.
+                    Try Different Date, Time or Staff for Appointment Schedule.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

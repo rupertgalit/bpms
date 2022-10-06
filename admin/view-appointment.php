@@ -122,6 +122,12 @@ while ($row=mysqli_fetch_array($ret)) {
     <th>Services</th>
     <td><?php  echo $row['Services'];?></td>
   </tr>
+
+  <tr>
+    <th>Staff</th>
+    <td><?php  echo $row['Staff'];?></td>
+  </tr>
+
   <tr>
     <th>Apply Date</th>
     <td><?php  echo $row['ApplyDate'];?></td>
