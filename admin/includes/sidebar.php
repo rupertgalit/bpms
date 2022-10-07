@@ -49,7 +49,16 @@
               <!-- //nav-second-level -->
             </li>
            
-        
+
+  
+            <li>
+              <a href="add-staff.php" class="chart-nav"><i class="fa fa-user nav_icon"></i>Add Staff</a>
+            </li>
+             <li>
+              <a href="staff-list.php" class="chart-nav"><i class="fa fa-users nav_icon"></i>Staff List</a>
+            </li>
+
+
             <li>
               <a href="add-customer.php" class="chart-nav"><i class="fa fa-user nav_icon"></i>Add Customer</a>
             </li>
