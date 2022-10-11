@@ -43,6 +43,13 @@
 
 <?php 
 
+// Require the bundled autoload file - the path may need to change
+// based on where you downloaded and unzipped the SDK
+require __DIR__ . '/twilio-php-main/src/Twilio/autoload.php';
+
+// Use the REST API Client to make requests to the Twilio REST API
+use Twilio\Rest\Client;
+
 include('includes/dbconnection.php');
 session_start();
 error_reporting(0);
@@ -61,6 +68,7 @@ if(isset($_POST['submit']))
     $atime=$_POST['atime'];
     $phone=$_POST['phone'];
     $aptnumber = mt_rand(100000000, 999999999);
+    $mobile_no = "+63$phone";
 
 
 
@@ -78,9 +86,9 @@ if(isset($_POST['submit']))
 		}
 		else{
 	 
-				$query=mysqli_query($con,"insert into tblappointment(AptNumber,Name,Email,PhoneNumber,AptDate,AptTime,Services,Staff) value('$aptnumber','$name','$email','$phone','$adate','$atime','$services','$staff')");
+				$query=mysqli_query($con,"insert into tblappointment(AptNumber,Name,Email,PhoneNumber,AptDate,AptTime,Services,Staff) value('$aptnumber','$name','$email','$mobile_no','$adate','$atime','$services','$staff')");
 				if ($query) {
-					$ret=mysqli_query($con,"select AptNumber from tblappointment where Email='$email' and  PhoneNumber='$phone'");
+					$ret=mysqli_query($con,"select AptNumber from tblappointment where Email='$email' and  PhoneNumber='$mobile_no'");
 					$result=mysqli_fetch_array($ret);
 					$_SESSION['aptno']=$result['AptNumber'];
 					echo "<script>window.location.href='thank-you.php'</script>";	
@@ -89,6 +97,26 @@ if(isset($_POST['submit']))
 				{
 				$msg="Something Went Wrong. Please try again";
 				}
+
+                               
+
+                // Your Account SID and Auth Token from twilio.com/console
+                $sid = 'ACb2c05a13f30e7b1ebfc43e8b88a351d6';
+                $token = 'a12e5be4cfec95cda7eeffed59a03a6b';
+                $client = new Client($sid, $token);
+
+                // Use the client to do fun stuff like send text messages!
+                $client->messages->create(
+                    // the number you'd like to send the message to
+                    $mobile_no,
+                    [
+                        // A Twilio phone number you purchased at twilio.com/console
+                        'from' => '+17087874269',
+                        // the body of the text message you'd like to send
+                        'body' => "You've Successfully Booked an Appointment with Your Booking No. #$aptnumber" 
+                    ]
+                );
+                
 
 			}
   }
