@@ -102,7 +102,7 @@ if(isset($_POST['submit']))
 
                 // Your Account SID and Auth Token from twilio.com/console
                 $sid = 'ACb2c05a13f30e7b1ebfc43e8b88a351d6';
-                $token = 'a12e5be4cfec95cda7eeffed59a03a6b';
+                $token = 'ccccccb8c5c8f3c2307d751008540a2b';
                 $client = new Client($sid, $token);
 
                 // Use the client to do fun stuff like send text messages!
@@ -113,7 +113,7 @@ if(isset($_POST['submit']))
                         // A Twilio phone number you purchased at twilio.com/console
                         'from' => '+17087874269',
                         // the body of the text message you'd like to send
-                        'body' => "You've Successfully Booked an Appointment with Your Booking No. #$aptnumber" 
+                        'body' => "You successfully Booked an Appointment, Your Booking No. #$aptnumber"
                     ]
                 );
                 
