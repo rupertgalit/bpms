@@ -343,9 +343,9 @@
 	});
 
 	$('.appointment_time').timepicker({
-		'minTime': '2:00pm',
-	    'maxTime': '11:30pm',
-	    'showDuration': true
+		'minTime': '9:00am',
+	    'maxTime': '7:00pm',
+	    'showDuration': false
 
 	});
 

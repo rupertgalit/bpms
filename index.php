@@ -60,65 +60,67 @@ include('includes/dbconnection.php');
 if(isset($_POST['submit']))
   {
 
-    $name=$_POST['name'];
-    $email=$_POST['email'];
-    $services=$_POST['services'];
-    $staff=$_POST['staff'];
-    $adate=$_POST['adate'];
-    $atime=$_POST['atime'];
-    $phone=$_POST['phone'];
-    $aptnumber = mt_rand(100000000, 999999999);
-    $mobile_no = "+63$phone";
+
+    echo "<script>window.location.href='login.php'</script>";
+    // $name=$_POST['name'];
+    // $email=$_POST['email'];
+    // $services=$_POST['services'];
+    // $staff=$_POST['staff'];
+    // $adate=$_POST['adate'];
+    // $atime=$_POST['atime'];
+    // $phone=$_POST['phone'];
+    // $aptnumber = mt_rand(100000000, 999999999);
+    // $mobile_no = "+63$phone";
 
 
 
-	$blkd=mysqli_query($con,"SELECT * FROM tblappointment WHERE AptDate = '$adate' AND AptTime = '$atime' AND Staff = '$staff'");
+	// $blkd=mysqli_query($con,"SELECT * FROM tblappointment WHERE AptDate = '$adate' AND AptTime = '$atime' AND Staff = '$staff'");
 
-	if(mysqli_num_rows($blkd)) {
+	// if(mysqli_num_rows($blkd)) {
 		
-		    echo '<script>
-            $(document).ready(function(){
+	// 	    echo '<script>
+    //         $(document).ready(function(){
             
-            $("#exampleModalCenter").modal("show");
-            }
-            )	   
-		  </script>';
-		}
-		else{
+    //         $("#exampleModalCenter").modal("show");
+    //         }
+    //         )	   
+	// 	  </script>';
+	// 	}
+	// 	else{
 	 
-				$query=mysqli_query($con,"insert into tblappointment(AptNumber,Name,Email,PhoneNumber,AptDate,AptTime,Services,Staff) value('$aptnumber','$name','$email','$mobile_no','$adate','$atime','$services','$staff')");
-				if ($query) {
-					$ret=mysqli_query($con,"select AptNumber from tblappointment where Email='$email' and  PhoneNumber='$mobile_no'");
-					$result=mysqli_fetch_array($ret);
-					$_SESSION['aptno']=$result['AptNumber'];
-					echo "<script>window.location.href='thank-you.php'</script>";	
-				}
-				else
-				{
-				$msg="Something Went Wrong. Please try again";
-				}
+	// 			$query=mysqli_query($con,"insert into tblappointment(AptNumber,Name,Email,PhoneNumber,AptDate,AptTime,Services,Staff) value('$aptnumber','$name','$email','$mobile_no','$adate','$atime','$services','$staff')");
+	// 			if ($query) {
+	// 				$ret=mysqli_query($con,"select AptNumber from tblappointment where Email='$email' and  PhoneNumber='$mobile_no'");
+	// 				$result=mysqli_fetch_array($ret);
+	// 				$_SESSION['aptno']=$result['AptNumber'];
+	// 				echo "<script>window.location.href='thank-you.php'</script>";	
+	// 			}
+	// 			else
+	// 			{
+	// 			$msg="Something Went Wrong. Please try again";
+	// 			}
 
                                
 
-                // Your Account SID and Auth Token from twilio.com/console
-                $sid = 'ACb2c05a13f30e7b1ebfc43e8b88a351d6';
-                $token = 'ccccccb8c5c8f3c2307d751008540a2b';
-                $client = new Client($sid, $token);
+    //             // Your Account SID and Auth Token from twilio.com/console
+    //             $sid = 'ACb2c05a13f30e7b1ebfc43e8b88a351d6';
+    //             $token = 'ccccccb8c5c8f3c2307d751008540a2b';
+    //             $client = new Client($sid, $token);
 
-                // Use the client to do fun stuff like send text messages!
-                $client->messages->create(
-                    // the number you'd like to send the message to
-                    $mobile_no,
-                    [
-                        // A Twilio phone number you purchased at twilio.com/console
-                        'from' => '+17087874269',
-                        // the body of the text message you'd like to send
-                        'body' => "You successfully Booked an Appointment, Your Booking No. #$aptnumber"
-                    ]
-                );
+    //             // Use the client to do fun stuff like send text messages!
+    //             $client->messages->create(
+    //                 // the number you'd like to send the message to
+    //                 $mobile_no,
+    //                 [
+    //                     // A Twilio phone number you purchased at twilio.com/console
+    //                     'from' => '+17087874269',
+    //                     // the body of the text message you'd like to send
+    //                     'body' => "You successfully Booked an Appointment, Your Booking No. #$aptnumber"
+    //                 ]
+    //             );
                 
 
-			}
+	// 		}
   }
 
 ?>
@@ -186,18 +188,18 @@ if(isset($_POST['submit']))
                         <div class="appointment-wrap">
                             <span class="subheading">Reservation</span>
                             <h3 class="mb-2">Make an Appointment</h3>
-                            <form action="#" method="post" class="appointment-form">
+                            <form action="" method="post" class="appointment-form">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="name" placeholder="Name"
-                                                name="name" required="true">
+                                                name="name" >
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <input type="email" class="form-control" id="appointment_email"
-                                                placeholder="Email" name="email" required="true">
+                                                placeholder="Email" name="email" >
                                         </div>
                                     </div>
 
@@ -205,7 +207,7 @@ if(isset($_POST['submit']))
                                         <div class="form-group">
                                             <div class="select-wrap">
                                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                <select name="services" id="services" required="true"
+                                                <select name="services" id="services" 
                                                     class="form-control">
                                                     <option value="">Select Services</option>
                                                     <?php $query=mysqli_query($con,"select * from tblservices");
@@ -224,7 +226,7 @@ if(isset($_POST['submit']))
                                         <div class="form-group">
                                             <div class="select-wrap">
                                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                <select name="staff" id="staff" required="true"
+                                                <select name="staff" id="staff" 
                                                     class="form-control">
                                                     <option value="">Select Staff</option>
                                                     <?php $query=mysqli_query($con,"select * from tblstaff");
@@ -243,19 +245,19 @@ if(isset($_POST['submit']))
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control appointment_date" placeholder="Date"
-                                                name="adate" id='adate' required="true">
+                                                name="adate" id='adate' >
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control appointment_time" placeholder="Time"
-                                                name="atime" id='atime' required="true">
+                                                name="atime" id='atime' >
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="phone" name="phone"
-                                                placeholder="Phone" required="true" maxlength="10" pattern="[0-9]+">
+                                                placeholder="Phone"  maxlength="10" pattern="[0-9]+">
                                         </div>
                                     </div>
                                 </div>

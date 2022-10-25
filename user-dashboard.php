@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
 
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
@@ -131,7 +132,7 @@ if(isset($_POST['submit']))
     
 
 
-    <?php include_once('user/includes/user-header.php');?>
+    <?php include_once('includes/user-header.php');?>
     <!-- END nav -->
 
     <section id="home-section" class="hero" style="background-image: url(images/bg.jpg);"
@@ -257,6 +258,9 @@ if(isset($_POST['submit']))
                                                 name="atime" id='atime' required="true">
                                         </div>
                                     </div>
+
+                                          
+
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="phone" name="phone"
@@ -319,6 +323,8 @@ if(isset($_POST['submit']))
         </svg></div>
 
 
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>                                                         
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -336,7 +342,8 @@ if(isset($_POST['submit']))
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
     </script>
     <script src="js/google-map.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main2.js"></script>
+    
 
 	
 	
