@@ -10,12 +10,16 @@ if(isset($_POST['submit']))
   {
     $name=$_POST['name'];
     $email=$_POST['email'];
-   $mobilenum=$_POST['mobilenum'];
+    $mobilenum=$_POST['mobilenum'];
     $gender=$_POST['gender'];
-$details=$_POST['details'];
+	$details=$_POST['details'];
+	$staff=$_POST['staff'];
+	$Appointment_type = "WALK-IN";
+	$aptnumber = mt_rand(100000000, 999999999);
+	$services = "Assign-Service";
  
      
-    $query=mysqli_query($con, "insert into  tblcustomers(Name,Email,MobileNumber,Gender,Details) value('$name','$email','$mobilenum','$gender','$details')");
+    $query=mysqli_query($con, "insert into  tblcustomers(Name,Email,MobileNumber,Gender,Details,Appointment_type,Apppointment_id,Staff,Services) values('$name','$email','$mobilenum','$gender','$details','$Appointment_type','$aptnumber','$staff','$services')");
     if ($query) {
 echo "<script>alert('Customer has been added.');</script>"; 
 echo "<script>window.location.href = 'add-customer.php'</script>"; 
@@ -82,6 +86,25 @@ echo "<script>alert('Something Went Wrong. Please try again.');</script>";
   
 							 <div class="form-group"> <label for="exampleInputEmail1">Name</label> <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" value="" required="true"> </div> <div class="form-group"> <label for="exampleInputPassword1">Email</label> <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="" required="true"> </div>
 							 <div class="form-group"> <label for="exampleInputEmail1">Mobile Number</label> <input type="text" class="form-control" id="mobilenum" name="mobilenum" placeholder="Mobile Number" value="" required="true" maxlength="10" pattern="[0-9]+"> </div>
+							 <div class="form-group"> <label for="exampleInputEmail1">Select Staff</label>
+                                            <div class="select-wrap">
+                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                                <select name="staff" id="staff" required="true"
+                                                    class="form-control">
+                                                    <option value="">Select Staff</option>
+                                                    <?php $query=mysqli_query($con,"select * from tblstaff");
+                                                    while($row=mysqli_fetch_array($query))
+                                                    {
+                                                    ?>
+                                                    <option value="<?php echo $row['Staff_Name'];?>">
+                                                        <?php echo $row['Staff_Name'];?>-<?php echo $row['Name'];?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+							 
+							 
+							 
 							 <div class="radio">
 
                                <p style="padding-top: 20px; font-size: 15px"> <strong>Gender:</strong> <label>

@@ -60,7 +60,20 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 				
 					<div class="table-responsive bs-example widget-shadow">
 						<h4>Customer List:</h4>
-						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th>Name</th> <th>Mobile</th> <th>Creation Date</th><th>Action</th> </tr> </thead> <tbody>
+						<table class="table table-bordered"> 
+							<thead> 
+								<tr> 
+							<th>#</th>
+							<th>Appointment ID</th>  
+							<th>Name</th> 
+							<th>Mobile</th>							
+							<th>Appointment Type</th> 
+							<th>Staff</th>
+							<th>Service to Assign</th>   
+							<th>Creation Date</th>
+							<th>Action</th> 
+								</tr> 
+							</thead> <tbody>
 <?php
 $ret=mysqli_query($con,"select *from  tblcustomers");
 $cnt=1;
@@ -68,7 +81,15 @@ while ($row=mysqli_fetch_array($ret)) {
 
 ?>
 
-						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['Name'];?></td> <td><?php  echo $row['MobileNumber'];?></td><td><?php  echo $row['CreationDate'];?></td> <td><a href="edit-customer-detailed.php?editid=<?php echo $row['ID'];?>">Edit</a>  ||  <a href="add-customer-services.php?addid=<?php echo $row['ID'];?>">Assign Services</a></td> </tr>   <?php 
+						 <tr> <th scope="row"><?php echo $cnt;?></th>
+						 <td><?php  echo $row['Apppointment_id'];?></td> 
+						 <td><?php  echo $row['Name'];?></td>
+						  <td><?php  echo $row['MobileNumber'];?></td>
+						  <td><?php  echo $row['Appointment_type'];?></td> 
+						  <td><?php  echo $row['Staff'];?></td>
+						  <td><?php  echo $row['Services'];?></td> 
+						  <td><?php  echo $row['CreationDate'];?></td> 
+						  <td><a href="edit-customer-detailed.php?editid=<?php echo $row['ID'];?>">Edit</a>  ||  <a href="add-customer-services.php?addid=<?php echo $row['ID'];?>">Assign Services</a></td> </tr>   <?php 
 $cnt=$cnt+1;
 }?></tbody> </table> 
 					</div>

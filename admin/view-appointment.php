@@ -8,24 +8,57 @@ include('includes/dbconnection.php');
 
 if(isset($_POST['submit']))
   {
-    
-    $cid=$_GET['viewid'];
+
+      $cid=$_GET['viewid'];
+      $ret=mysqli_query($con,"select * from tblappointment where ID='$cid'");
+      $cnt=1;
+      while ($row=mysqli_fetch_array($ret)) {
+
+
+      $appointment_id = $row['AptNumber'];
+      $name = $row['Name'];
+      $email = $row['Email'];
+      $mobilenum = $row['PhoneNumber'];
+      $details = $row['Remark'];
+      $appointment_type = "ONLINE";
+      $gender = $row['Gender'];
+      $staff = $row['Staff'];
+      $services = $row['Services'];
+
+      $cid=$_GET['viewid'];
       $remark=$_POST['remark'];
       $status=$_POST['status'];
-     
+      
     
-     
-   $query=mysqli_query($con, "update  tblappointment set Remark='$remark',Status='$status' where ID='$cid'");
-    if ($query) {
-    $msg="All remark has been updated.";
-  }
-  else
-    {
-      $msg="Something Went Wrong. Please try again";
-    }
+              // $query=mysqli_query($con, "insert into  `tblcustomers`(Name,Email,MobileNumber,Gender,Details,Appointment_type,Appointment_id) value(' $remark',' $remark',' $remark',' $remark',' $remark',' $remark',' $remark')");
+              // if ($query) {
+              //   echo "<script>alert('Customer has been added.');</script>"; 
+              //   echo "<script>window.location.href = 'add-customer.php'</script>"; 
+              //    } else {
+              //   echo "<script>alert('Something Went Wrong. Please try again. $mysqli→error');</script>"; 
+              //   // printf("Could not insert record into table: %s<br />", $mysqli→error); 	
+              //   }
 
-  
-}
+               
+              $query1=mysqli_query($con, "insert into  tblcustomers(Name,Email,MobileNumber,Gender,Details,Appointment_type,Apppointment_id,Staff,Services) value('$name','$email','$mobilenum','$gender','$details','$appointment_type','$appointment_id','$staff','$services')");
+              $query=mysqli_query($con, "update  tblappointment set Remark='$remark',Status='$status' where ID='$cid'");
+              
+                if ($query) {
+         
+                        $msg="All remark has been updated.";
+                        
+                
+              }
+              else
+                {
+                  $msg="Something Went Wrong. Please try again";
+                }
+
+
+
+               }
+        }
+
   
 
   ?>
