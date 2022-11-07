@@ -18,8 +18,11 @@
           <div class="profile_details_left"><!--notifications of menu start -->
           <ul class="nofitications-dropdown">
             <?php
-$ret1=mysqli_query($con,"select ID,Name from  tblappointment where Status=''");
-$num=mysqli_num_rows($ret1);
+
+            $User_id = $_SESSION['login_ses'] ;
+            $ret1=mysqli_query($con,"SELECT * from  tblappointment WHERE User_id= 2 " );
+            // $ret1=mysqli_query($con,"select ID,Name from  tblappointment where Status=''");
+            $num=mysqli_num_rows($ret1);
 
 ?>  
             <li class="dropdown head-dpdn">
@@ -34,14 +37,36 @@ $num=mysqli_num_rows($ret1);
                 <li>
             
                    <div class="notification_desc">
-                     <?php if($num>0){
-while($result=mysqli_fetch_array($ret1))
-{
-            ?>
-                 <a class="dropdown-item" href="view-appointment.php?viewid=<?php echo $result['ID'];?>">New appointment received from <?php echo $result['Name'];?> </a><br />
-<?php }} else {?>
-    <a class="dropdown-item" href="all-appointment.php">No New Appointment Received</a>
-        <?php } ?>
+
+
+    <?php 
+      if($num>0)
+      {
+          while($result=mysqli_fetch_array($ret1))
+          {
+              if($result['Status']== "")
+              {
+    ?>
+              <a class="dropdown-item" href="view-appointment.php?viewid=<?php echo $result['ID'];?>">Appointment pending from <?php echo $result['Name'];?> </a><br />
+              
+    <?php 
+              }
+              else
+              {
+     ?>           
+              <a class="dropdown-item" href="view-appointment.php?viewid=<?php echo $result['ID'];?>">Appointment approved from <?php echo $result['Name'];?> </a><br />
+    <?php
+              }
+          }
+    
+      } 
+      else 
+      {
+    ?>
+            <a class="dropdown-item" href="all-appointment.php">No New Appointment Received</a>      
+    <?php 
+      } 
+    ?>
                            
                   </div>
                   <div class="clearfix"></div>  
