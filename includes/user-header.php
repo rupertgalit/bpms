@@ -4,7 +4,7 @@
        
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+            <li class="nav-item active"><a href="user-dashboard.php" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
             
             <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
@@ -20,7 +20,7 @@
             <?php
 
             $User_id = $_SESSION['login_ses'] ;
-            $ret1=mysqli_query($con,"SELECT * from  tblappointment WHERE User_id= 2 " );
+            $ret1=mysqli_query($con,"SELECT * from  tblappointment WHERE User_id=$User_id " );
             // $ret1=mysqli_query($con,"select ID,Name from  tblappointment where Status=''");
             $num=mysqli_num_rows($ret1);
 

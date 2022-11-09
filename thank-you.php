@@ -1,6 +1,13 @@
 <?php
+
+include('includes/dbconnection.php');
 session_start();
 error_reporting(0);
+
+if (strlen($_SESSION['login_ses']==0)) {
+    header('location:logout.php');
+    } 
+	else{
 
   ?>
 <!DOCTYPE html>
@@ -33,7 +40,7 @@ error_reporting(0);
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-	   <?php include_once('includes/header.php');?>
+	   <?php include_once('includes/user-header.php');?>
 
     <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg-2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -183,3 +190,4 @@ error_reporting(0);
     
   </body>
 </html>
+	<?php } ?>
