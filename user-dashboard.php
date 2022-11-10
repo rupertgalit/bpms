@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/87a348d4c3.js" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
