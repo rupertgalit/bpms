@@ -5,11 +5,11 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active"><a href="user-dashboard.php" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="user-services.php" class="nav-link">Services</a></li>
             
-            <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="user-about.php" class="nav-link">About</a></li>
            
-            <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="user-contact.php" class="nav-link">Contact</a></li>
             
             <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
           </ul>
@@ -26,8 +26,10 @@
 
 ?>  
             <li class="dropdown head-dpdn">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue"><?php echo $num;?></span></a>
-              
+            
+              <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue"><?php echo $num;?></span></a> -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa-duotone fa-earth-americas"></i><?php echo $num;?></span></a>
+
               <ul class="dropdown-menu">
                 <li>
                   <div class="notification_header">
