@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">   
 
     <link rel="stylesheet" href="css/aos.css">
 
@@ -37,7 +37,24 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/87a348d4c3.js" crossorigin="anonymous"></script>
-    
+
+
+    <style>
+
+        .welcome{
+            justify-content:center;
+            padding-top: 150px;
+            color: white;
+        }
+        .wel-title{
+            color: white;
+            font-size: 70px;
+            font-family: "Comic Sans MS", Cursive;
+        }
+
+
+    </style>
+
 </head>
 
 <body>
@@ -277,7 +294,20 @@ if(isset($_POST['submit']))
                     </div>
                 </div>
                 <div class="one-third">
+
+                <?php   
+                        $user_id = $_SESSION['login_ses'];
+                        $query=mysqli_query($con,"SELECT * from tbluser WHERE ID = $user_id ");
+                        while($row=mysqli_fetch_array($query))
+                        {
+                                                    ?>
                     <div class="img" style="background-image: url(images/bg-1.jpg);">
+                    
+                    <div class="welcome"><center><h1 class="wel-title">WELCOME<br><?php echo $row['User_name']; ?></h1></div>
+
+                <?php 
+                        } 
+                ?>
                     </div>
                 </div>
             </div>
