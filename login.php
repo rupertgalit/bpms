@@ -12,14 +12,17 @@ include('includes/dbconnection.php');
 
 if(isset($_POST['btn-reg']))
   {
-    $user_name=$_POST['user_name'];
-    $email=$_POST['email'];
-	$password=$_POST['password'];
+    $user_name  = $_POST['user_name'];  
+	  $password   = $_POST['password'];
+    $name       = $_POST['name'];
+    $email      = $_POST['email'];
+    $phone_num  = $_POST['phone_num'];
+    $gender     = $_POST['gender'];
     // $staff_name=$_POST['staff_name'];
 	// $details=$_POST['details'];
 	
      
-    $query=mysqli_query($con, "insert into  tbluser(User_name,Email_add,Password) value('$user_name','$email','$password')");
+    $query=mysqli_query($con, "insert into  tbluser(User_name,Password,Name,Email_add,Phone_num,Gender) value('$user_name','$password','$name','$email','$phone_num','$gender')");
     if ($query) {
 echo "<script>alert('user has been added.');</script>"; 
 echo "<script>window.location.href = 'login.php'</script>"; 
@@ -37,6 +40,7 @@ if(isset($_POST['btn-login']))
     $ret=mysqli_fetch_array($query);
     if($ret>0){
       $_SESSION['login_ses']=$ret['ID'];
+      
      header('location:user-dashboard.php');
     }
     else{
@@ -117,20 +121,21 @@ if(isset($_POST['btn-login']))
   <!-- Register Box -->
   <div id="register">
     <h1>Create Account</h1>
-    <br>
-    <br>
-    <br>
+    
     <!-- <a href="#"><img class="social-login" src="https://image.flaticon.com/icons/png/128/59/59439.png"></a>
     <a href="#"><img class="social-login" src="https://image.flaticon.com/icons/png/128/49/49026.png"></a>
     <a href="#"><img class="social-login" src="https://image.flaticon.com/icons/png/128/34/34227.png"></a>
     <p>or use your email for registration:</p> -->
     <form method="post">
-      <input type="text" name="user_name" placeholder="Name" autocomplete="off" required="true"><br>
-      <input type="email" name="email" placeholder="Email" autocomplete="off" reaquired="true"><br>
+      <input type="text" name="user_name" placeholder="UserName" autocomplete="off" required="true"><br>
       <input type="password" name="password" placeholder="Password" autocomplete="off" required="true"><br>
-
+      <input type="text" name="name" placeholder="Name" autocomplete="off" required="true"><br>      
+      <input type="email" name="email" placeholder="Email" autocomplete="off" reaquired="true"><br>
+      <input type="text" name="phone_num" placeholder="Mobile Number" autocomplete="off" required="true"><br>
+      <input type="text" name="gender" placeholder="Gender" autocomplete="off" required="true"><br>
+      
       <button type="submit" name="btn-reg" class="submit-btn" >Register</button>
-      <!-- <input class="submit-btn" name="btn-reg" type="submit" value="Sign Up" > -->
+       <!-- <input class="submit-btn" name="btn-reg" type="submit" value="Sign Up" > -->
     </form>
   </div>
   

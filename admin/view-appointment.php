@@ -45,7 +45,8 @@ if(isset($_POST['submit']))
               
                 if ($query) {
          
-                        $msg="All remark has been updated.";
+                        // $msg="All remark has been updated.";
+                        
                         
                 
               }
@@ -110,7 +111,7 @@ if(isset($_POST['submit']))
 					<h3 class="title1">View Appointment</h3>
 					
 					
-				
+          
 					<div class="table-responsive bs-example widget-shadow">
 						<p style="font-size:16px; color:red" align="center"> <?php if($msg){
     echo $msg;

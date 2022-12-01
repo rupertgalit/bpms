@@ -25,10 +25,10 @@
             $num=mysqli_num_rows($ret1);
 
 ?>  
-            <li class="dropdown head-dpdn">
+            <li class="dropdown head-dpdn">REQUEST CONFIRMATION STATUS
             
               <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue"><?php echo $num;?></span></a> -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa-duotone fa-earth-americas"></i><?php echo $num;?></span></a>
+              <a href="#" class="icon icon-envelope" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><?php echo $num;?></span></a>
 
               <ul class="dropdown-menu">
                 <li>
@@ -46,29 +46,39 @@
       {
           while($result=mysqli_fetch_array($ret1))
           {
-              if($result['Status']== "")
+              if($result['Status']=="")
               {
     ?>
-              <a class="dropdown-item" href="view-appointment.php?viewid=<?php echo $result['ID'];?>">Appointment pending from <?php echo $result['Name'];?> </a><br />
-              
+              <a class="dropdown-item" href="view-appointment.php?viewid=<?php echo $result['ID'];?>">Scanning Appointment for <?php echo $result['Name'];?> </a><br />
+         
     <?php 
               }
-              else
+             else
               {
      ?>           
-              <a class="dropdown-item" href="view-appointment.php?viewid=<?php echo $result['ID'];?>">Appointment approved from <?php echo $result['Name'];?> </a><br />
+              <a class="dropdown-item" href="view-appointment.php?viewid=<?php echo $result['ID'];?>">Appointment approved for <?php echo $result['Name'];?> </a><br />
     <?php
+    
+    
+    
               }
           }
+          
+      }
     
-      } 
-      else 
+    
+     
+    else 
+             
+      
       {
     ?>
             <a class="dropdown-item" href="all-appointment.php">No New Appointment Received</a>      
     <?php 
       } 
     ?>
+    
+    
                            
                   </div>
                   <div class="clearfix"></div>  
